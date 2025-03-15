@@ -18,6 +18,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel()
     {
         _darkModeEnabled = Application.Current!.ActualThemeVariant == ThemeVariant.Dark;
+        _transparencyEnabled = true;
+        OnTransparencyEnabledChanged(_transparencyEnabled);
     }
     
     partial void OnDarkModeEnabledChanged(bool value)

@@ -18,41 +18,59 @@
         <Border Name="PART_RootWindowBorder"
                 BorderThickness="2"
                 CornerRadius="8">
-            <Grid RowDefinitions="Auto *">
+            <Grid RowDefinitions="Auto Auto *">
                 <Grid Height="40">
                     <TextBlock Margin="5" Text="{Binding #Window.Title}" VerticalAlignment="Center" />
                 </Grid>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" FontStyle="Normal">日语五十音</TextBlock>
 
-                <StackPanel Grid.Row="1" Orientation="Vertical" MaxWidth="1000">
-                    <Border Classes="setting">
-                        <Grid ColumnDefinitions="* Auto">
-                            <TextBlock VerticalAlignment="Center">Dark Theme</TextBlock>
-                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding DarkModeEnabled}" />
-                        </Grid>
+                <WrapPanel Grid.Row="2" Orientation="Horizontal" MaxWidth="1000">
+                    <!-- 每个 Border 的宽度和高度设置为 100，形成正方形 -->
+                    <Border Classes="setting" Width="100" Height="100" Margin="5">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!-- SVG 图标 -->
+                            <PathIcon Data="M10 20L20 10L30 20Z" Width="40" Height="40" />
+                            <!-- 文字 -->
+                            <TextBlock Text="Dark Theme" HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        </StackPanel>
                     </Border>
 
-                    <Border Classes="setting">
-                        <Grid ColumnDefinitions="* Auto">
-                            <TextBlock VerticalAlignment="Center">Transparency</TextBlock>
-                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding TransparencyEnabled}" />
-                        </Grid>
+                    <Border Classes="setting" Width="100" Height="100" Margin="5">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <PathIcon Data="M10 20L20 10L30 20Z" Width="40" Height="40" />
+                            <TextBlock Text="Transparency" HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        </StackPanel>
                     </Border>
 
-                    <Border Classes="setting">
-                        <Grid ColumnDefinitions="* Auto">
-                            <TextBlock VerticalAlignment="Center">Accent Border</TextBlock>
-                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding BorderEnabled}" />
-                        </Grid>
+                    <Border Classes="setting" Width="100" Height="100" Margin="5">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <PathIcon Data="M10 20L20 10L30 20Z" Width="40" Height="40" />
+                            <TextBlock Text="Accent Border" HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        </StackPanel>
                     </Border>
 
-                    <Border Classes="setting">
-                        <Grid ColumnDefinitions="* Auto">
-                            <TextBlock VerticalAlignment="Center">Button Sample</TextBlock>
-                            <Button Classes="setting" Grid.Column="1" Content="Test Button" />
-                        </Grid>
+                    <Border Classes="setting" Width="100" Height="100" Margin="5">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <PathIcon Data="M10 20L20 10L30 20Z" Width="40" Height="40" />
+                            <TextBlock Text="Button Sample" HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        </StackPanel>
                     </Border>
 
-                </StackPanel>
+                    <!-- 添加更多 Border 以测试换行 -->
+                    <Border Classes="setting" Width="100" Height="100" Margin="5">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <PathIcon Data="M10 20L20 10L30 20Z" Width="40" Height="40" />
+                            <TextBlock Text="Sample 5" HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Classes="setting" Width="100" Height="100" Margin="5">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <PathIcon Data="M10 20L20 10L30 20Z" Width="40" Height="40" />
+                            <TextBlock Text="Sample 6" HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
             </Grid>
 
         </Border>
