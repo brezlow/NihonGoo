@@ -130,6 +130,10 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="6" />
         </Style>
+        <Style Selector="Border.setting:pointerover">
+            <Setter Property="Background" Value="{DynamicResource UIControlBackgroundBrushHigh}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource UIControlBackgroundBrushHigh}" />
+        </Style>
 
         <Style Selector="Button.setting">
             <Setter Property="Background" Value="{DynamicResource UIControlBackgroundBrushHigh}" />
