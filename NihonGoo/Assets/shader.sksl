@@ -1,0 +1,77 @@
+// Alternative by iq suggested by Shane
+// Its associative and commutative
+// Associative: sminExp(a, sminExp(b, c, k), k) = sminExp(sminExp(a, b, k), c, k)
+// Commutative: sminExp(a, b, k) = sminExp(b, a, k)
+float sminExp(in float a, in float b, in float k) {
+    float res = exp(-k * a) + exp(-k * b);
+    return -log(res) / k;
+}
+
+// Hash from "Hash without Sine" by Dave_Hoskins (https://www.shadertoy.com/view/4djSRW)
+float Hash11(in float x) {
+    x = fract(x * 0.1031);
+    x *= x + 33.33;
+    x *= x + x;
+    return fract(x);
+}
+
+// Random cycling points
+vec2 getPoint(in vec2 cell) {
+    float freq = Hash11(dot(cell, vec2(393.84, 673.48))) * 3.0 + 1.0;
+    float phase = Hash11(dot(cell, vec2(348.46, 183.37)));
+    float amp = Hash11(dot(cell, vec2(275.35, 741.69)));
+
+    float t = iTime * freq + phase;
+    return cell + 0.5 + 0.5 * vec2(cos(t), sin(t)) * amp;
+}
+
+float smoothVoronoi(in vec2 p, in float k) {
+    // Get closest point
+    vec2 cell = floor(p), closest = getPoint(cell);
+    float minDist = length(p - closest);
+    for (int i=-1; i < 2; i++) {
+        for (int j=-1; j < 2; j++) {
+            if (i == 0 && j == 0) continue;
+            vec2 curCell = cell + vec2(i, j), curPoint = getPoint(curCell);
+            float dist = length(p - curPoint);
+            if (dist < minDist) {
+                closest = curPoint;
+                minDist = dist;
+            }
+        }
+    }
+
+    // Get closest border (should be doing 5x5 search but it doesn't affect this look)
+    cell = floor(closest);
+    vec2 p1 = getPoint(cell + 1.0);
+    float dist = dot(p - 0.5 * (closest + p1), normalize(closest - p1));
+    for (int i=-1; i < 2; i++) {
+        for (int j=-1; j < 2; j++) {
+            if ((i == 0 && j == 0) || (i == 1 && j == 1)) continue;
+            vec2 curPoint = getPoint(cell + vec2(i, j));
+            dist = sminExp(dist, dot(p - 0.5 * (closest + curPoint), normalize(closest - curPoint)), k);
+        }
+    }
+
+    return dist;
+}
+
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+    vec2 uv = (fragCoord - 0.5 * iResolution.xy) / iResolution.y * 3.0 + 0.5 * iTime;
+    float unit = 6.0 / iResolution.y;
+
+    float k = 13.0; // How much the tiles are packed
+    float voro = smoothVoronoi(uv, k);
+
+    float dx = (smoothVoronoi(uv + vec2(0.001, 0.0), k) - voro) / 0.001;
+    float dy = (smoothVoronoi(uv + vec2(0.0, 0.001), k) - voro) / 0.001;
+    vec3 grad = normalize(vec3(dx, dy, 1.0));
+
+    fragColor = vec4(0.0);
+
+    fragColor.gb += 0.5 + 0.5 * grad.xy;
+    fragColor.r += grad.z;
+
+    fragColor.rgb -= smoothstep(unit, 0.0, voro);
+    fragColor.rgb += pow(grad.z, 10.0);
+}

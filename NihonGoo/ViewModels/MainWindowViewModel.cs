@@ -21,9 +21,9 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public void SpeakKana(Kana kana)
     {
-        if(!kana.IsNotEmpty)return;
+        if (!kana.IsNotEmpty) return;
         _synthesizer.SelectVoice("Microsoft Haruka Desktop");
-        _synthesizer.SpeakAsync(kana.Character+" ");
+        _synthesizer.SpeakAsync(kana.Character + " ");
     }
 
     public MainWindowViewModel()
@@ -33,32 +33,32 @@ public partial class MainWindowViewModel : ViewModelBase
         OnTransparencyEnabledChanged(_transparencyEnabled);
         _kanaList = new ObservableCollection<Kana>
         {
-            new("あ", "a"), new("い", "i"), new("う", "u"), new("え", "e"), new("お", "o"),
-            new("か", "ka"), new("き", "ki"), new("く", "ku"), new("け", "ke"), new("こ", "ko"),
-            new("さ", "sa"), new("し", "shi"), new("す", "su"), new("せ", "se"), new("そ", "so"),
-            new("た", "ta"), new("ち", "chi"), new("つ", "tsu"), new("て", "te"), new("と", "to"),
-            new("な", "na"), new("に", "ni"), new("ぬ", "nu"), new("ね", "ne"), new("の", "no"),
-            new("は", "ha"), new("ひ", "hi"), new("ふ", "fu"), new("へ", "he"), new("ほ", "ho"),
-            new("ま", "ma"), new("み", "mi"), new("む", "mu"), new("め", "me"), new("も", "mo"),
-            new("や", "ya"), new("", "", false), new("ゆ", "yu"), new("", "", false), new("よ", "yo"),
-            new("ら", "ra"), new("り", "ri"), new("る", "ru"), new("れ", "re"), new("ろ", "ro"),
-            new("わ", "wa"), new("", "", false), new("", "", false), new("", "", false), new("を", "wo"),
-            new("ん", "n"), new("", "", false), new("", "", false), new("", "", false), new("", "", false),
-            new("が", "ga"), new("ぎ", "gi"), new("ぐ", "gu"), new("げ", "ge"), new("ご", "go"),
-            new("ざ", "za"), new("じ", "ji"), new("ず", "zu"), new("ぜ", "ze"), new("ぞ", "zo"),
-            new("だ", "da"), new("ぢ", "ji"), new("づ", "zu"), new("で", "de"), new("ど", "do"),
-            new("ば", "ba"), new("び", "bi"), new("ぶ", "bu"), new("べ", "be"), new("ぼ", "bo"),
-            new("ぱ", "pa"), new("ぴ", "pi"), new("ぷ", "pu"), new("ぺ", "pe"), new("ぽ", "po"),
-            new("きゃ", "kya"), new("きゅ", "kyu"), new("きょ", "kyo"), new("", "", false), new("", "", false),
-            new("しゃ", "sha"), new("しゅ", "shu"), new("しょ", "sho"), new("", "", false), new("", "", false),
-            new("ちゃ", "cha"), new("ちゅ", "chu"), new("ちょ", "cho"), new("", "", false), new("", "", false),
-            new("にゃ", "nya"), new("にゅ", "nyu"), new("にょ", "nyo"), new("", "", false), new("", "", false),
-            new("ひゃ", "hya"), new("ひゅ", "hyu"), new("ひょ", "hyo"), new("", "", false), new("", "", false),
-            new("みゃ", "mya"), new("みゅ", "myu"), new("みょ", "myo"), new("", "", false), new("", "", false),
-            new("りゃ", "rya"), new("りゅ", "ryu"), new("りょ", "ryo"), new("", "", false), new("", "", false),
-            new("ぎゃ", "gya"), new("ぎゅ", "gyu"), new("ぎょ", "gyo"), new("", "", false), new("", "", false),
-            new("びゃ", "bya"), new("びゅ", "byu"), new("びょ", "byo"), new("", "", false), new("", "", false),
-            new("ぴゃ", "pya"), new("ぴゅ", "pyu"), new("ぴょ", "pyo"), new("", "", false), new("", "", false),
+            new("あ/ア", "a"), new("い/イ", "i"), new("う/ウ", "u"), new("え/エ", "e"), new("お/オ", "o"),
+            new("か/カ", "ka"), new("き/キ", "ki"), new("く/ク", "ku"), new("け/ケ", "ke"), new("こ/コ", "ko"),
+            new("さ/サ", "sa"), new("し/シ", "shi"), new("す/ス", "su"), new("せ/セ", "se"), new("そ/ソ", "so"),
+            new("た/タ", "ta"), new("ち/チ", "chi"), new("つ/ツ", "tsu"), new("て/テ", "te"), new("と/ト", "to"),
+            new("な/ナ", "na"), new("に/ニ", "ni"), new("ぬ/ヌ", "nu"), new("ね/ネ", "ne"), new("の/ノ", "no"),
+            new("は/ハ", "ha"), new("ひ/ヒ", "hi"), new("ふ/フ", "fu"), new("へ/ヘ", "he"), new("ほ/ホ", "ho"),
+            new("ま/マ", "ma"), new("み/ミ", "mi"), new("む/ム", "mu"), new("め/メ", "me"), new("も/モ", "mo"),
+            new("や/ヤ", "ya"), new("", "", false), new("ゆ/ユ", "yu"), new("", "", false), new("よ/ヨ", "yo"),
+            new("ら/ラ", "ra"), new("り/リ", "ri"), new("る/ル", "ru"), new("れ/レ", "re"), new("ろ/ロ", "ro"),
+            new("わ/ワ", "wa"), new("", "", false), new("", "", false), new("", "", false), new("を/ヲ", "wo"),
+            new("ん/ン", "n"), new("", "", false), new("", "", false), new("", "", false), new("", "", false),
+            new("が/ガ", "ga"), new("ぎ/ギ", "gi"), new("ぐ/グ", "gu"), new("げ/ゲ", "ge"), new("ご/ゴ", "go"),
+            new("ざ/ザ", "za"), new("じ/ジ", "ji"), new("ず/ズ", "zu"), new("ぜ/ゼ", "ze"), new("ぞ/ゾ", "zo"),
+            new("だ/ダ", "da"), new("ぢ/ヂ", "ji"), new("づ/ヅ", "zu"), new("で/デ", "de"), new("ど/ド", "do"),
+            new("ば/バ", "ba"), new("び/ビ", "bi"), new("ぶ/ブ", "bu"), new("べ/ベ", "be"), new("ぼ/ボ", "bo"),
+            new("ぱ/パ", "pa"), new("ぴ/ピ", "pi"), new("ぷ/プ", "pu"), new("ぺ/ペ", "pe"), new("ぽ/ポ", "po"),
+            new("きゃ/キャ", "kya"), new("きゅ/キュ", "kyu"), new("きょ/キョ", "kyo"), new("", "", false), new("", "", false),
+            new("しゃ/シャ", "sha"), new("しゅ/シュ", "shu"), new("しょ/ショ", "sho"), new("", "", false), new("", "", false),
+            new("ちゃ/チャ", "cha"), new("ちゅ/チュ", "chu"), new("ちょ/チョ", "cho"), new("", "", false), new("", "", false),
+            new("にゃ/ニャ", "nya"), new("にゅ/ニュ", "nyu"), new("にょ/ニョ", "nyo"), new("", "", false), new("", "", false),
+            new("ひゃ/ヒャ", "hya"), new("ひゅ/ヒュ", "hyu"), new("ひょ/ヒョ", "hyo"), new("", "", false), new("", "", false),
+            new("みゃ/ミャ", "mya"), new("みゅ/ミュ", "myu"), new("みょ/ミョ", "myo"), new("", "", false), new("", "", false),
+            new("りゃ/リャ", "rya"), new("りゅ/リュ", "ryu"), new("りょ/リョ", "ryo"), new("", "", false), new("", "", false),
+            new("ぎゃ/ギャ", "gya"), new("ぎゅ/ギュ", "gyu"), new("ぎょ/ギョ", "gyo"), new("", "", false), new("", "", false),
+            new("びゃ/ビャ", "bya"), new("びゅ/ビュ", "byu"), new("びょ/ビョ", "byo"), new("", "", false), new("", "", false),
+            new("ぴゃ/ピャ", "pya"), new("ぴゅ/ピュ", "pyu"), new("ぴょ/ピョ", "pyo"), new("", "", false)
         };
     }
 

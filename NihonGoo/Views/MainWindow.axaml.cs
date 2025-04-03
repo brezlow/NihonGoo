@@ -1,10 +1,13 @@
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using FluentAvalonia.UI.Windowing;
 using NihonGoo.ViewModels;
 
@@ -17,9 +20,14 @@ public partial class MainWindow : AppWindow
         TitleBar.ExtendsContentIntoTitleBar = true;
         SplashScreen = new MainAppSplashScreen(this);
 
+
         InitializeComponent();
     }
 
+    private static Stream GetResource(string loc)
+    {
+        return AssetLoader.Open(new Uri(loc));
+    }
 
     internal class MainAppSplashScreen : IApplicationSplashScreen
     {
@@ -28,10 +36,16 @@ public partial class MainWindow : AppWindow
             _owner = owner;
         }
 
-        public string AppName { get; }
-        public IImage AppIcon { get; }
-        public object SplashScreenContent { get; }
-        public int MinimumShowTime => 2000;
+        public string AppName { get; init; }
+        public IImage AppIcon { get; init; }
+
+     
+        public object SplashScreenContent => new Image
+        {
+            Source = new Bitmap(GetResource("avares://NihonGoo/Assets/logo.png"))
+        };
+
+        public int MinimumShowTime => 1000;
 
         public Action InitApp { get; set; }
 
