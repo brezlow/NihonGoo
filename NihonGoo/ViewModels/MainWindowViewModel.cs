@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Speech.Synthesis;
 using Avalonia;
 using Avalonia.Controls;
@@ -17,10 +18,11 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty] private ObservableCollection<WindowTransparencyLevel> _transparencyLevelHint = [];
     [ObservableProperty] private ObservableCollection<Kana> _kanaList;
 
-    private readonly SpeechSynthesizer _synthesizer = new();
+    private readonly SpeechSynthesizer? _synthesizer = OperatingSystem.IsWindows() ? new SpeechSynthesizer() : null;
 
     public void SpeakKana(Kana kana)
     {
+        if (!OperatingSystem.IsWindows()) return;
         if (!kana.IsNotEmpty) return;
         _synthesizer.SelectVoice("Microsoft Haruka Desktop");
         _synthesizer.SpeakAsync(kana.Character + " ");
